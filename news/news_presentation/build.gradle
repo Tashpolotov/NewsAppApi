@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+
+
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.example.presentation'
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation project(":common:common_utils")
+    implementation project(":news:news_domain")
+    implementation Deps.core
+    implementation Deps.appcompat
+    implementation Deps.androidmaterila
+    implementation Deps.constrainlayout
+    testImplementation TestImplementation.junit
+    androidTestImplementation AndroidTestImplementation.junit
+    androidTestImplementation AndroidTestImplementation.espresso
+
+    implementation LottieAnimations.lottieAnimations
+    implementation "com.google.dagger:hilt-android:2.46.1"
+    kapt "com.google.dagger:hilt-compiler:2.46.1"
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttp
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
+    implementation(CoroutineLifecycleScope.lifecycleViewModel)
+    implementation(CoroutineLifecycleScope.lifecycleRuntime)
+
+    implementation(Glide.glide)
+    kapt (Glide.annotationProcessor)
+
+    implementation(ViewModelDelegate.viewModelDeligate)
+
+    implementation CircularProgress.swipeRefresh
+
+
+}
